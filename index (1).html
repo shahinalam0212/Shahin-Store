@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Premium Fashion | SHAHIN STORE</title><meta name="description" content="SHAHIN STORE – premium fashion in Bangladesh.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>:root{--black:#111;--white:#fff;--bg:#f8f8f6;--gold:#c8a96a;--text:#2b2b2b;--muted:#777;--line:#e4e2dc;--danger:#b3261e;--ok:#2e7d32;--radius:4px;--max:1280px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.serif{font-family:'Playfair Display','Hind Siliguri',Georgia,serif;font-weight:600;letter-spacing:.01em;color:var(--black)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+.container{max-width:var(--max);margin:0 auto;padding:0 20px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* loader */
+#loader{position:fixed;inset:0;background:var(--black);z-index:999;display:grid;place-items:center;transition:opacity .4s,visibility .4s}
+#loader.done{opacity:0;visibility:hidden}
+#loader span{color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:.4em;font-size:1.1rem;animation:pulse 1s infinite alternate}
+@keyframes pulse{from{opacity:.3}to{opacity:1}}
+
+/* announcement */
+.announce{background:var(--black);color:#eee;font-size:.8rem;text-align:center;padding:8px 12px;letter-spacing:.04em}
+.announce b{color:var(--gold)}
+
+/* header */
+header.site{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.22em;font-size:1.15rem;color:var(--black)}
+.logo-mark{width:34px;height:34px;background:var(--black);color:var(--gold);display:grid;place-items:center;font-size:1.1rem;letter-spacing:0;border-radius:2px}
+.logo small{display:block;font-size:.55rem;letter-spacing:.5em;color:var(--gold);font-family:Inter,sans-serif;font-weight:500;margin-top:-2px}
+nav.main{display:flex;gap:0;margin-left:18px}
+nav.main>.nav-item>a{position:relative;display:block;padding:24px 11px;font-size:.76rem;text-transform:uppercase;letter-spacing:.09em;font-weight:500;white-space:nowrap}
+nav.main>.nav-item>a::after{content:"";position:absolute;left:11px;right:11px;bottom:16px;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .25s}
+nav.main>.nav-item>a:hover::after,nav.main>.nav-item>a.active::after{transform:scaleX(1)}
+nav.main>.nav-item>a.active{color:var(--black)}
+nav.main>.nav-item:hover>a{color:var(--gold)}
+.nav-item{position:static}
+.mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-top:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,.08);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s;padding:28px 0}
+.nav-item:hover .mega,.nav-item:focus-within .mega{opacity:1;visibility:visible;transform:none}
+.mega .container{display:grid;grid-template-columns:repeat(4,1fr);gap:8px 24px}
+.mega a{font-size:.88rem;padding:4px 0;color:var(--muted)}
+.mega a:hover{color:var(--black);padding-left:4px}
+.mega h4{grid-column:1/-1;font-family:'Playfair Display',serif;margin-bottom:6px}
+.hactions{margin-left:auto;display:flex;align-items:center;gap:4px}
+.ibtn{position:relative;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;transition:.2s}
+.ibtn:hover{background:var(--bg)}
+.ibtn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6}
+.badge{position:absolute;top:2px;right:0;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:var(--black);font-size:.65rem;font-weight:700;display:grid;place-items:center;padding:0 4px}
+.badge:empty,.badge[data-n="0"]{display:none}
+.lang{border:1px solid var(--line);border-radius:20px;padding:5px 12px;font-size:.75rem;letter-spacing:.06em}
+.lang:hover{border-color:var(--gold)}
+.hamburger{display:none}
+.searchbar{display:none;border-top:1px solid var(--line);padding:12px 0;background:#fff}
+.searchbar.open{display:block}
+.searchbar form{display:flex;gap:8px}
+.searchbar input{flex:1;padding:12px 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg)}
+
+/* mobile drawer */
+.drawer{position:fixed;inset:0;z-index:200;pointer-events:none}
+.drawer .scrim{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:.25s}
+.drawer .panel{position:absolute;left:0;top:0;bottom:0;width:min(86vw,360px);background:#fff;transform:translateX(-100%);transition:.3s;overflow:auto;padding:20px}
+.drawer.open{pointer-events:auto}
+.drawer.open .scrim{opacity:1}
+.drawer.open .panel{transform:none}
+.drawer details{border-bottom:1px solid var(--line)}
+.drawer summary,.drawer .plain{padding:14px 0;font-weight:500;cursor:pointer;list-style:none;display:block;text-transform:uppercase;font-size:.85rem;letter-spacing:.08em}
+.drawer details a{display:block;padding:7px 0 7px 12px;color:var(--muted);font-size:.9rem}
+
+/* buttons */
+.btn{display:inline-block;padding:14px 30px;background:var(--black);color:#fff;font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;font-weight:500;border:1px solid var(--black);transition:.25s;text-align:center}
+.btn:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn.ghost:hover{background:var(--white);color:var(--black);border-color:var(--white)}
+.btn.outline{background:transparent;color:var(--black)}
+.btn.outline:hover{background:var(--black);color:#fff;border-color:var(--black)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.btn.gold:hover{background:var(--black);color:#fff;border-color:var(--black)}
+.btn.block{display:block;width:100%}
+.btn[disabled]{opacity:.45;pointer-events:none}
+
+/* hero */
+.hero{position:relative;min-height:78vh;display:flex;align-items:center;color:#fff;background:linear-gradient(115deg,#0b0b0b 0%,#1b1814 55%,#3a2f1c 100%);overflow:hidden}
+.hero::before{content:"";position:absolute;right:-8%;top:-20%;width:62%;height:140%;background:radial-gradient(circle at 40% 45%,rgba(200,169,106,.34),transparent 62%)}
+.hero::after{content:"SHAHIN";position:absolute;right:-2%;bottom:-6%;font-family:'Playfair Display',serif;font-size:clamp(7rem,22vw,20rem);color:rgba(255,255,255,.04);letter-spacing:.05em;line-height:1}
+.hero .container{position:relative;z-index:1}
+.hero .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.4em;font-size:.75rem;margin-bottom:18px}
+.hero h1{color:#fff;font-size:clamp(2.4rem,6vw,4.8rem);line-height:1.08;max-width:14ch}
+.hero p{max-width:46ch;margin:20px 0 32px;color:#cfcac0}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* sections */
+section.block{padding:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:32px;gap:16px}
+.sec-head h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.sec-head .eyebrow{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
+.link-arrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--black);padding-bottom:2px;white-space:nowrap}
+.link-arrow:hover{color:var(--gold);border-color:var(--gold)}
+.grid{display:grid;gap:24px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g6{grid-template-columns:repeat(6,1fr)}
+
+.cat-tile{position:relative;aspect-ratio:3/4;overflow:hidden;display:flex;align-items:flex-end;padding:22px;color:#fff;transition:.4s}
+.cat-tile::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent 60%);z-index:1}
+.cat-tile .bg{position:absolute;inset:0;transition:transform .6s}
+.cat-tile:hover .bg{transform:scale(1.06)}
+.cat-tile span{position:relative;z-index:2;font-family:'Playfair Display',serif;font-size:1.5rem}
+.cat-tile small{position:relative;z-index:2;display:block;font-family:Inter;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+
+/* product card */
+.pcard{position:relative;background:#fff;transition:.3s;display:flex;flex-direction:column}
+.pcard:hover{box-shadow:0 14px 34px rgba(0,0,0,.09);transform:translateY(-3px)}
+.pimg{position:relative;aspect-ratio:3/4;overflow:hidden;background:#efede8}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s,opacity .35s}
+.pimg img.alt{position:absolute;inset:0;opacity:0}
+.pcard:hover .pimg img.alt{opacity:1}
+.pcard:hover .pimg img{transform:scale(1.04)}
+.tag{position:absolute;top:10px;left:10px;background:var(--black);color:#fff;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;z-index:2}
+.tag.sale{background:var(--danger)}
+.tag.sample{left:auto;right:10px;background:rgba(255,255,255,.9);color:#666;border:1px solid var(--line)}
+.wish{position:absolute;bottom:10px;right:10px;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.12);z-index:2;transition:.2s}
+.wish svg{width:18px;height:18px;stroke:var(--black);fill:none;stroke-width:1.7}
+.wish.on svg{fill:var(--danger);stroke:var(--danger)}
+.wish:hover{transform:scale(1.1)}
+.pinfo{padding:14px 16px 18px}
+.pinfo .cat{font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+.pinfo h3{font-family:Inter,'Hind Siliguri',sans-serif;font-size:.95rem;font-weight:500;margin:3px 0 6px}
+.price{font-weight:600;color:var(--black)}
+.price s{color:var(--muted);font-weight:400;margin-left:8px;font-size:.88em}
+.price .off{color:var(--danger);font-size:.8em;margin-left:6px;font-weight:500}
+.swatches{display:flex;gap:5px;margin-top:8px}
+.sw{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.2);display:inline-block}
+.stars{color:var(--gold);font-size:.85rem;letter-spacing:1px}
+.noreview{font-size:.72rem;color:var(--muted)}
+
+/* banners */
+.promo{background:var(--black);color:#fff;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
+.promo>div{padding:64px 56px}
+.promo h2{color:#fff;font-size:clamp(1.8rem,3.5vw,2.8rem);margin:8px 0 14px}
+.promo .art{min-height:340px;height:100%;background:radial-gradient(circle at 50% 50%,rgba(200,169,106,.5),transparent 60%),#1b1814}
+.brands{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.brand{padding:22px 38px;border:1px solid var(--line);background:#fff;font-family:'Playfair Display',serif;letter-spacing:.2em;color:#555;font-size:1rem}
+.notice{background:#fff;border:1px dashed var(--gold);padding:18px 22px;color:#555;font-size:.9rem}
+.news{background:var(--black);color:#fff;text-align:center;padding:72px 20px}
+.news h2{color:#fff}
+.news form{display:flex;max-width:480px;margin:24px auto 0;gap:0}
+.news input{flex:1;padding:14px 16px;border:0;border-radius:0}
+.insta{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.insta div{aspect-ratio:1;display:grid;place-items:center;font-size:.7rem;letter-spacing:.1em;color:rgba(0,0,0,.4);text-transform:uppercase}
+
+/* footer */
+footer.site{background:#0c0c0c;color:#aaa;padding:64px 0 24px;margin-top:0}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+footer h5{color:#fff;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+footer a{display:block;padding:4px 0;font-size:.9rem}
+footer a:hover{color:var(--gold)}
+footer .bottom{border-top:1px solid #222;margin-top:40px;padding-top:20px;font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.float-help{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:90}
+.float-help a{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);font-size:.7rem;font-weight:700;transition:.2s}
+.float-help a:hover{transform:scale(1.08)}
+.fh-wa{background:#25d366}.fh-ms{background:#0a7cff}
+
+/* shop */
+.crumbs{font-size:.8rem;color:var(--muted);padding:22px 0 8px}
+.crumbs a:hover{color:var(--gold)}
+.shop{display:grid;grid-template-columns:260px 1fr;gap:36px;padding-bottom:64px}
+.filters{align-self:start;position:sticky;top:90px}
+.fgroup{border-bottom:1px solid var(--line);padding:16px 0}
+.fgroup h4{font-family:Inter;font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px}
+.fgroup label{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:.9rem;cursor:pointer}
+.fgroup input[type=checkbox],.fgroup input[type=radio]{accent-color:var(--black)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);padding:5px 11px;font-size:.8rem;background:#fff;transition:.15s}
+.chip.on,.chip:hover{border-color:var(--black)}
+.chip.on{background:var(--black);color:#fff}
+.chip.color{display:flex;align-items:center;gap:6px}
+.range{display:flex;gap:8px}
+.range input{width:100%;padding:8px;border:1px solid var(--line);background:#fff}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.toolbar select{padding:9px 12px;border:1px solid var(--line);background:#fff}
+.filter-toggle{display:none}
+.empty{text-align:center;padding:80px 20px;color:var(--muted)}
+
+/* product detail */
+.pd{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;padding:12px 0 56px}
+.gallery{display:grid;grid-template-columns:80px 1fr;gap:12px}
+.thumbs{display:flex;flex-direction:column;gap:10px}
+.thumbs button{border:1px solid transparent;aspect-ratio:3/4;overflow:hidden;background:#eee}
+.thumbs button.on{border-color:var(--black)}
+.thumbs img,.mainimg img{width:100%;height:100%;object-fit:cover}
+.mainimg{aspect-ratio:3/4;overflow:hidden;background:#efede8}
+.pd h1{font-size:clamp(1.6rem,3vw,2.3rem);margin:6px 0 10px}
+.pd .price{font-size:1.4rem}
+.opt{margin:22px 0}
+.opt h4{font-family:Inter;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;display:flex;justify-content:space-between}
+.opt h4 a{color:var(--gold);text-transform:none;letter-spacing:0;text-decoration:underline;cursor:pointer}
+.size-btn{min-width:48px;padding:10px 14px;border:1px solid var(--line);background:#fff;margin:0 6px 6px 0;transition:.15s}
+.size-btn.on{background:var(--black);color:#fff;border-color:var(--black)}
+.size-btn:hover:not(.on){border-color:var(--black)}
+.cdot{width:34px;height:34px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);margin:0 8px 6px 0;transition:.15s}
+.cdot.on{box-shadow:0 0 0 2px var(--black)}
+.qty{display:inline-flex;border:1px solid var(--line);background:#fff}
+.qty button{width:40px;height:44px;font-size:1.1rem}
+.qty input{width:48px;text-align:center;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);background:transparent}
+.buy-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.buy-row .btn{flex:1;min-width:150px}
+.stock{font-size:.85rem}.stock.in{color:var(--ok)}.stock.out{color:var(--danger)}
+.infoacc details{border-top:1px solid var(--line);padding:14px 0}
+.infoacc details:last-child{border-bottom:1px solid var(--line)}
+.infoacc summary{cursor:pointer;font-weight:500;font-size:.9rem}
+.infoacc p,.infoacc table{margin-top:10px;font-size:.9rem;color:#555}
+table.sg{width:100%;border-collapse:collapse}
+table.sg td,table.sg th{border:1px solid var(--line);padding:6px 10px;text-align:center;font-size:.82rem}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:none;place-items:center;padding:20px}
+.modal.open{display:grid}
+.modal .box{background:#fff;padding:28px;max-width:560px;width:100%;max-height:85vh;overflow:auto}
+
+/* cart */
+.cart{display:grid;grid-template-columns:1fr 380px;gap:36px;padding-bottom:72px}
+.citem{display:grid;grid-template-columns:96px 1fr auto;gap:18px;background:#fff;padding:16px;margin-bottom:12px;align-items:center}
+.citem img{width:96px;aspect-ratio:3/4;object-fit:cover}
+.citem h3{font-family:Inter;font-size:.95rem;font-weight:500}
+.citem .meta{font-size:.8rem;color:var(--muted);margin:3px 0 8px}
+.rm{font-size:.78rem;color:var(--danger);text-decoration:underline;margin-left:14px}
+.summary{background:#fff;padding:26px;align-self:start;position:sticky;top:90px}
+.summary h3{margin-bottom:16px}
+.sumrow{display:flex;justify-content:space-between;padding:7px 0;font-size:.92rem}
+.sumrow.total{border-top:1px solid var(--line);margin-top:8px;padding-top:14px;font-weight:700;font-size:1.1rem}
+.coupon{display:flex;gap:6px;margin:14px 0}
+.coupon input{flex:1;padding:11px;border:1px solid var(--line)}
+.coupon button{padding:0 16px;background:var(--black);color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.msg{font-size:.8rem;margin-top:4px}.msg.err{color:var(--danger)}.msg.ok{color:var(--ok)}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,40px);background:var(--black);color:#fff;padding:13px 22px;font-size:.88rem;opacity:0;transition:.3s;z-index:400;border-left:3px solid var(--gold);pointer-events:none}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:1024px){.g4{grid-template-columns:repeat(3,1fr)}.g6{grid-template-columns:repeat(3,1fr)}.pd{gap:28px}.cart{grid-template-columns:1fr}.summary{position:static}}
+@media(max-width:1279px){nav.main{display:none}.hamburger{display:grid}}
+@media(max-width:860px){
+ .g4,.g3{grid-template-columns:repeat(2,1fr);gap:14px}
+ .promo{grid-template-columns:1fr}.promo>div{padding:40px 24px}.promo .art{min-height:200px;order:-1}
+ .shop{grid-template-columns:1fr}
+ .filters{position:fixed;inset:0;z-index:250;background:#fff;padding:20px;overflow:auto;transform:translateX(-100%);transition:.3s;top:0}
+ .filters.open{transform:none}
+ .filter-toggle{display:inline-block}
+ .pd{grid-template-columns:1fr}
+ .gallery{grid-template-columns:1fr}.thumbs{flex-direction:row;order:2}.thumbs button{width:64px}
+ footer .cols{grid-template-columns:1fr 1fr}
+ .insta{grid-template-columns:repeat(3,1fr)}
+ section.block{padding:48px 0}
+ .citem{grid-template-columns:72px 1fr}.citem img{width:72px}.citem .ctotal{grid-column:2}
+}
+@media(max-width:520px){.hbar{gap:6px}.logo span.word{display:none}footer .cols{grid-template-columns:1fr}.g6{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body data-page="home"><main id="app"></main>
+<script>/* SHAHIN STORE – catalog data (SAMPLE DATA ONLY).
+   In Phase 2 this file is replaced by Supabase queries (see js/api.js contract).
+   Every product below is a development placeholder: names, prices, stock and
+   images are NOT real inventory. No reviews or ratings are invented. */
+
+window.SAMPLE_DATA = true;
+
+window.CATEGORIES = [
+  { slug: 'men', en: "Men's Collection", bn: 'পুরুষ', children: [
+    ['t-shirts','T-Shirts','টি-শার্ট'],['polo-shirts','Polo Shirts','পোলো শার্ট'],['shirts','Shirts','শার্ট'],
+    ['formal-shirts','Formal Shirts','ফরমাল শার্ট'],['casual-shirts','Casual Shirts','ক্যাজুয়াল শার্ট'],['jeans','Jeans','জিন্স'],
+    ['trousers','Trousers','ট্রাউজার'],['pants','Pants','প্যান্ট'],['panjabi','Panjabi','পাঞ্জাবি'],['punjabi','Punjabi','পাঞ্জাবী'],
+    ['hoodies','Hoodies','হুডি'],['jackets','Jackets','জ্যাকেট'],['sweatshirts','Sweatshirts','সোয়েটশার্ট'],['shorts','Shorts','শর্টস'],
+    ['underwear','Underwear','অন্তর্বাস'],['accessories','Accessories','এক্সেসরিজ']] },
+  { slug: 'women', en: "Women's Collection", bn: 'নারী', children: [
+    ['saree','Saree','শাড়ি'],['three-piece','Three Piece','থ্রি-পিস'],['kurti','Kurti','কুর্তি'],['tops','Tops','টপস'],
+    ['t-shirts','T-Shirts','টি-শার্ট'],['shirts','Shirts','শার্ট'],['jeans','Jeans','জিন্স'],['trousers','Trousers','ট্রাউজার'],
+    ['leggings','Leggings','লেগিংস'],['gowns','Gowns','গাউন'],['dresses','Dresses','ড্রেস'],['abaya','Abaya','আবায়া'],
+    ['hijab','Hijab','হিজাব'],['jackets','Jackets','জ্যাকেট'],['accessories','Women\'s Accessories','নারীদের এক্সেসরিজ']] },
+  { slug: 'kids', en: "Kids' Collection", bn: 'শিশু', children: [
+    ['boys','Boys Clothing','ছেলেদের পোশাক'],['girls','Girls Clothing','মেয়েদের পোশাক'],['baby','Baby Clothing','বেবি পোশাক'],
+    ['kids-t-shirts','Kids T-Shirts','কিডস টি-শার্ট'],['kids-dresses','Kids Dresses','কিডস ড্রেস'],['kids-pants','Kids Pants','কিডস প্যান্ট'],
+    ['kids-sets','Kids Sets','কিডস সেট']] },
+  { slug: 'special', en: 'Special Collection', bn: 'বিশেষ কালেকশন', children: [
+    ['new-arrivals','New Arrivals','নতুন আগমন'],['best-sellers','Best Sellers','বেস্ট সেলার'],['trending','Trending','ট্রেন্ডিং'],
+    ['premium','Premium Collection','প্রিমিয়াম কালেকশন'],['sale','Sale','সেল'],['winter','Winter Collection','শীতকালীন'],['summer','Summer Collection','গ্রীষ্মকালীন']] }
+];
+
+window.COLORS = {
+  Black:'#111111', White:'#f5f5f5', Navy:'#1f2a44', Olive:'#6b705c', Beige:'#d8c3a5', Maroon:'#6d1a2b',
+  Sand:'#c9b38c', Grey:'#8a8a8a', Emerald:'#1f6f5c', Rose:'#c98a96', 'Sky Blue':'#8db6d9'
+};
+window.BRANDS = ['Shahin Essentials','Shahin Heritage','Shahin Premium'];
+const LS = ['S','M','L','XL','XXL'], KS = ['2-3Y','4-5Y','6-7Y','8-9Y'], FS = ['Free Size'], JS = ['28','30','32','34','36'];
+
+// [id, bn/en name, cat, sub, price, old, sizes, colors, flags, brand, bnName]
+const RAW = [
+ ['Classic Cotton T-Shirt','men','t-shirts',790,990,LS,['Black','White','Navy'],['new','best'],0,'ক্লাসিক কটন টি-শার্ট'],
+ ['Pique Polo Shirt','men','polo-shirts',1290,1590,LS,['Navy','White','Olive'],['best'],0,'পিকে পোলো শার্ট'],
+ ['Oxford Formal Shirt','men','formal-shirts',1890,null,LS,['White','Sky Blue'],['premium'],2,'অক্সফোর্ড ফরমাল শার্ট'],
+ ['Linen Casual Shirt','men','casual-shirts',1590,1990,LS,['Beige','Olive','White'],['trend','summer'],0,'লিনেন ক্যাজুয়াল শার্ট'],
+ ['Slim Fit Denim Jeans','men','jeans',2290,2790,JS,['Navy','Black'],['best'],0,'স্লিম ফিট ডেনিম জিন্স'],
+ ['Chino Trousers','men','trousers',1790,null,JS,['Sand','Olive','Navy'],['new'],0,'চিনো ট্রাউজার'],
+ ['Embroidered Panjabi','men','panjabi',2990,3490,LS,['White','Maroon','Navy'],['premium','trend'],1,'এমব্রয়ডারি পাঞ্জাবি'],
+ ['Fleece Pullover Hoodie','men','hoodies',2190,2690,LS,['Black','Grey','Maroon'],['winter','best'],0,'ফ্লিস হুডি'],
+ ['Padded Winter Jacket','men','jackets',3990,4990,LS,['Black','Olive'],['winter','sale'],2,'প্যাডেড উইন্টার জ্যাকেট'],
+ ['Cotton Shorts','men','shorts',890,1190,LS,['Navy','Sand','Grey'],['summer'],0,'কটন শর্টস'],
+ ['Jamdani-Style Saree','women','saree',4590,5290,FS,['Maroon','Emerald','Rose'],['premium','trend'],1,'জামদানি স্টাইল শাড়ি'],
+ ['Printed Three Piece Set','women','three-piece',3290,3790,['S','M','L','XL'],['Emerald','Rose','Beige'],['new'],0,'প্রিন্টেড থ্রি-পিস সেট'],
+ ['Cotton Kurti','women','kurti',1490,1790,['S','M','L','XL'],['Rose','Sky Blue','White'],['best'],0,'কটন কুর্তি'],
+ ['Relaxed Fit Top','women','tops',990,null,['S','M','L'],['White','Black','Beige'],['new','trend'],0,'রিল্যাক্সড ফিট টপ'],
+ ['High-Rise Skinny Jeans','women','jeans',2390,2890,['26','28','30','32'],['Navy','Black'],['best'],0,'হাই-রাইজ স্কিনি জিন্স'],
+ ['Stretch Leggings','women','leggings',690,890,['S','M','L'],['Black','Grey','Navy'],['best'],0,'স্ট্রেচ লেগিংস'],
+ ['Evening Gown','women','gowns',5990,6990,['S','M','L'],['Maroon','Emerald','Black'],['premium'],2,'ইভিনিং গাউন'],
+ ['Everyday Abaya','women','abaya',2790,null,FS,['Black','Navy','Grey'],['trend'],0,'এভরিডে আবায়া'],
+ ['Soft Chiffon Hijab','women','hijab',490,690,FS,['Beige','Rose','Black','Sky Blue'],['best','sale'],0,'সফট শিফন হিজাব'],
+ ['Boys Graphic T-Shirt','kids','kids-t-shirts',590,790,KS,['Sky Blue','Olive','White'],['new'],0,'ছেলেদের গ্রাফিক টি-শার্ট'],
+ ['Girls Party Dress','kids','kids-dresses',1690,1990,KS,['Rose','Sky Blue'],['trend'],0,'মেয়েদের পার্টি ড্রেস'],
+ ['Kids Jogger Pants','kids','kids-pants',790,null,KS,['Grey','Navy','Black'],['winter'],0,'কিডস জগার প্যান্ট'],
+ ['Kids Two-Piece Set','kids','kids-sets',1390,1690,KS,['Sand','Sky Blue'],['best','summer'],0,'কিডস টু-পিস সেট'],
+ ['Baby Cotton Romper','kids','baby',890,null,['0-3M','3-6M','6-12M'],['White','Rose','Sky Blue'],['new'],0,'বেবি কটন রম্পার']
+];
+
+window.PRODUCTS = RAW.map((r, i) => {
+  const [name, cat, sub, price, old, sizes, colors, flags, brand, bn] = r;
+  return {
+    id: i + 1, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, ''),
+    name, nameBn: bn, cat, sub, price, oldPrice: old, sizes, colors,
+    isNew: flags.includes('new'), best: flags.includes('best'), trending: flags.includes('trend'),
+    premium: flags.includes('premium'), sale: !!old || flags.includes('sale'),
+    winter: flags.includes('winter'), summer: flags.includes('summer'),
+    brand: BRANDS[brand], created: 100 - i, popularity: 100 - ((i * 7) % 23),
+    stock: 5 + ((i * 13) % 40),           // SAMPLE stock value only
+    rating: null, reviews: 0,              // never invented – filled by real reviews in Phase 2
+    desc: `Sample product for development. Replace with real description, fabric, care and fit details from the admin dashboard.`
+  };
+});
+
+/* Placeholder artwork: each product gets a garment illustration that matches its type
+   (saree -> saree, t-shirt -> t-shirt, jeans -> jeans ...). These are drawn illustrations,
+   not photographs. Real photos are uploaded to Supabase Storage in Phase 2. */
+(function () {
+  const TEE = 'M145 90 L172 80 Q200 108 228 80 L255 90 L335 150 L300 195 L268 170 L268 430 L132 430 L132 170 L100 195 L65 150 Z';
+  const LSLEEVE = 'M145 90 L172 80 Q200 100 228 80 L255 90 L345 300 L315 312 L268 190 L268 440 L132 440 L132 190 L85 312 L55 300 Z';
+  const PANTS = 'M140 80 L260 80 L278 455 L214 455 L200 200 L186 455 L122 455 Z';
+  const KURTA = 'M148 85 L175 75 Q200 98 225 75 L252 85 L332 140 L312 335 L282 328 L270 195 L278 445 L122 445 L130 195 L118 328 L88 335 L68 140 Z';
+  const btn = (x, y0, n, gap) => Array.from({ length: n }, (_, k) => `<circle cx="${x}" cy="${y0 + k * gap}" r="3.5" class="d f"/>`).join('');
+  const S = {
+    tee:      { b: TEE, d: '<path class="d" d="M172 80 Q200 118 228 80"/>' },
+    polo:     { b: TEE, d: '<path class="d" d="M172 80 L190 112 L200 102 L210 112 L228 80"/><path class="d" d="M200 102 L200 175"/>' + btn(200, 125, 3, 18) },
+    shirt:    { b: LSLEEVE, d: '<path class="d" d="M172 80 L190 112 L200 100 L210 112 L228 80"/><path class="d" d="M200 100 L200 440"/>' + btn(200, 130, 6, 50) + '<path class="d" d="M85 312 L110 306"/><path class="d" d="M315 312 L290 306"/>' },
+    jeans:    { b: PANTS, d: '<path class="d" d="M140 105 L260 105"/><path class="d" d="M200 105 L200 200"/><path class="d" d="M148 118 Q160 160 182 140"/><path class="d" d="M252 118 Q240 160 218 140"/><path class="d" d="M135 300 L186 300"/><path class="d" d="M265 300 L214 300"/>' },
+    pants:    { b: PANTS, d: '<path class="d" d="M140 105 L260 105"/><path class="d" d="M200 105 L200 200"/><path class="d" d="M165 120 L158 455"/><path class="d" d="M235 120 L242 455"/>' },
+    leggings: { b: 'M150 80 L250 80 L244 455 L208 455 L200 210 L192 455 L156 455 Z', d: '<path class="d" d="M150 100 L250 100"/>' },
+    shorts:   { b: 'M138 110 L262 110 L290 290 L214 290 L200 200 L186 290 L110 290 Z', d: '<path class="d" d="M138 130 L262 130"/><path class="d" d="M200 130 L200 200"/>', y: 40, z: 1.45 },
+    underwear:{ b: 'M125 170 L275 170 L258 250 Q236 315 200 335 Q164 315 142 250 Z', d: '<path class="d" d="M125 192 L275 192"/>', y: 20, z: 1.5 },
+    hoodie:   { b: 'M135 112 L170 98 Q200 125 230 98 L265 112 L348 405 L308 420 L268 255 L268 440 L132 440 L132 255 L92 420 L52 405 Z', d: '<path class="d" d="M165 100 Q200 38 235 100 Q200 132 165 100Z"/><path class="d" d="M188 120 L186 190"/><path class="d" d="M212 120 L214 190"/><path class="d" d="M155 340 L245 340 L256 400 L144 400Z"/>' },
+    sweat:    { b: 'M135 100 L172 88 Q200 112 228 88 L265 100 L348 405 L308 420 L268 250 L268 440 L132 440 L132 250 L92 420 L52 405 Z', d: '<path class="d" d="M172 88 Q200 124 228 88"/><path class="d" d="M132 415 L268 415"/>' },
+    jacket:   { b: 'M135 100 L172 85 L200 110 L228 85 L265 100 L348 410 L308 425 L268 250 L268 440 L132 440 L132 250 L92 425 L52 410 Z', d: '<path class="d" d="M200 110 L200 440"/><path class="d" d="M172 85 L188 130"/><path class="d" d="M228 85 L212 130"/><path class="d" d="M150 330 L180 330 L180 390 L150 390Z"/><path class="d" d="M220 330 L250 330 L250 390 L220 390Z"/>' },
+    panjabi:  { b: KURTA, d: '<path class="d" d="M175 76 Q200 110 225 76"/><path class="d" d="M200 100 L200 270"/><path class="d" d="M188 100 L188 270"/><path class="d" d="M212 100 L212 270"/>' + btn(200, 120, 5, 30) + '<path class="d" d="M122 420 L278 420"/>' },
+    kurti:    { b: 'M150 85 L175 78 Q200 100 225 78 L250 85 L308 140 L288 192 L266 168 L286 450 L114 450 L134 168 L112 192 L92 140 Z', d: '<path class="d" d="M175 78 Q200 112 225 78"/><path class="d" d="M200 108 L200 230"/><path class="d" d="M120 400 L280 400"/>' },
+    top:      { b: 'M150 95 L175 85 Q200 108 225 85 L250 95 L302 155 L272 180 L266 165 L266 335 L134 335 L134 165 L128 180 L98 155 Z', d: '<path class="d" d="M175 85 Q200 120 225 85"/>', y: 40, z: 1.2 },
+    threepiece:{ b: 'M150 85 L175 78 Q200 100 225 78 L250 85 L308 140 L288 192 L266 168 L286 450 L114 450 L134 168 L112 192 L92 140 Z', d: '<path class="dp" d="M118 100 Q200 200 305 122 L318 215 Q205 300 108 185 Z"/><path class="d" d="M175 78 Q200 112 225 78"/>' },
+    saree:    { b: 'M132 75 L268 75 L292 465 L108 465 Z', d: '<path class="dp" d="M140 75 L262 75 L282 255 Q210 235 150 280 Z"/><path class="g" d="M108 448 L292 448"/><path class="g" d="M110 420 L290 420"/><path class="d" d="M170 290 L160 465"/><path class="d" d="M200 285 L198 465"/><path class="d" d="M230 288 L238 465"/><path class="d" d="M262 270 L270 465"/><path class="d" d="M150 75 L172 120 L228 120 L250 75"/>' },
+    gown:     { b: 'M168 70 L232 70 L240 195 Q332 335 350 470 L50 470 Q68 335 160 195 Z', d: '<path class="d" d="M160 195 L240 195"/><path class="d" d="M185 195 Q150 330 120 470"/><path class="d" d="M215 195 Q250 330 280 470"/>', y: 10 },
+    dress:    { b: 'M170 72 L186 72 L200 105 L214 72 L230 72 L240 175 L305 410 L95 410 L160 175 Z', d: '<path class="d" d="M160 175 L240 175"/><path class="d" d="M200 175 L200 410"/>', y: 25, z: 1.15 },
+    abaya:    { b: 'M155 78 Q200 62 245 78 L335 205 L322 455 L292 460 L276 225 L282 468 L118 468 L124 225 L108 460 L78 455 L65 205 Z', d: '<path class="d" d="M200 85 L200 468"/><path class="d" d="M124 225 L124 468"/><path class="d" d="M276 225 L276 468"/>', y: 5 },
+    hijab:    { b: 'M200 60 Q325 72 303 225 Q292 335 335 475 L65 475 Q108 335 97 225 Q75 72 200 60 Z', d: '<path class="face" d="M200 135 Q252 135 252 205 Q252 268 200 280 Q148 268 148 205 Q148 135 200 135Z"/><path class="d" d="M120 400 Q200 430 280 400"/>', y: 0 },
+    romper:   { b: 'M160 100 L185 92 Q200 110 215 92 L240 100 L292 142 L264 172 L257 152 L257 295 L238 338 L214 338 L200 305 L186 338 L162 338 L143 295 L143 152 L136 172 L108 142 Z', d: '<path class="d" d="M185 92 Q200 125 215 92"/>' + btn(200, 138, 3, 20), y: 30, z: 1.3 },
+    belt:     { b: 'M70 235 L330 235 L330 285 L70 285 Z', d: '<rect class="d" x="175" y="225" width="50" height="70" rx="4"/><rect class="d" x="190" y="245" width="20" height="30"/>' + btn(120, 260, 1, 0) + btn(145, 260, 1, 0) + btn(255, 260, 1, 0) + btn(280, 260, 1, 0), y: 20, z: 1.1 },
+    bag:      { b: 'M105 205 L295 205 L318 420 L82 420 Z', d: '<path class="d" d="M150 205 Q150 110 200 110 Q250 110 250 205"/><path class="d" d="M105 250 L295 250"/><circle class="d f" cx="200" cy="250" r="6"/>', y: 10, z: 1.1 },
+    set:      { b: 'M95 95 L120 88 Q140 105 160 88 L185 95 L235 140 L210 172 L190 152 L190 290 L90 290 L90 152 L70 172 L45 140 Z M215 250 L345 250 L360 330 L292 330 L280 290 L268 330 L200 330 Z', d: '<path class="d" d="M120 88 Q140 118 160 88"/>', y: 40, z: 1.2 }
+  };
+  const MAP = {
+    men: { 't-shirts': 'tee', 'polo-shirts': 'polo', shirts: 'shirt', 'formal-shirts': 'shirt', 'casual-shirts': 'shirt', jeans: 'jeans', trousers: 'pants', pants: 'pants', panjabi: 'panjabi', punjabi: 'panjabi', hoodies: 'hoodie', jackets: 'jacket', sweatshirts: 'sweat', shorts: 'shorts', underwear: 'underwear', accessories: 'belt' },
+    women: { saree: 'saree', 'three-piece': 'threepiece', kurti: 'kurti', tops: 'top', 't-shirts': 'tee', shirts: 'shirt', jeans: 'jeans', trousers: 'pants', leggings: 'leggings', gowns: 'gown', dresses: 'dress', abaya: 'abaya', hijab: 'hijab', jackets: 'jacket', accessories: 'bag' },
+    kids: { boys: 'tee', girls: 'dress', baby: 'romper', 'kids-t-shirts': 'tee', 'kids-dresses': 'dress', 'kids-pants': 'pants', 'kids-sets': 'set' }
+  };
+  const DARK = ['Black', 'Navy', 'Maroon', 'Olive', 'Emerald', 'Grey'];
+
+  window.productImage = function (p, view = 0, colorName) {
+    const cn = colorName || p.colors[0], col = COLORS[cn] || '#999';
+    const sh = S[(MAP[p.cat] || {})[p.sub] || 'tee'];
+    const kid = p.cat === 'kids' && p.sub !== 'baby' && p.sub !== 'kids-sets';
+    const ink = DARK.includes(cn) ? 'rgba(255,255,255,.38)' : 'rgba(0,0,0,.30)';
+    const bg = ['#efede8', '#e6e2d8', '#f4f1ea', '#dcd7cb'][view % 4];
+    const zoom = [1, 1, 1, 1.35][view % 4] * (kid ? 0.85 : 1) * (sh.z || 1);
+    const rot = [0, 0, -5, 0][view % 4];
+    const ty = (sh.y || 0) + (kid ? 40 : 0) + (view % 4 === 3 ? -40 : 0);
+    const label = (p.sub || '').replace(/-/g, ' ').toUpperCase();
+    const pattern = view % 4 === 1 ? `<pattern id="t" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="none"/><path d="M0 0L0 8" stroke="rgba(0,0,0,.07)" stroke-width="3"/></pattern>` : '';
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 533"><defs>${pattern}<style>.d{fill:none;stroke:${ink};stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.d.f{fill:${ink}}.dp{fill:rgba(255,255,255,.16);stroke:${ink};stroke-width:2}.g{fill:none;stroke:#c8a96a;stroke-width:6}.face{fill:${bg};stroke:${ink};stroke-width:2}</style></defs>` +
+      `<rect width="400" height="533" fill="${bg}"/>` +
+      `<g transform="translate(200 266) rotate(${rot}) scale(${zoom}) translate(-200 ${-266 + ty / zoom})">` +
+      `<path d="${sh.b}" transform="translate(5 8)" fill="rgba(0,0,0,.10)"/>` +
+      `<path d="${sh.b}" fill="${col}" stroke="rgba(0,0,0,.25)" stroke-width="2" stroke-linejoin="round"/>` +
+      (view % 4 === 1 ? `<path d="${sh.b}" fill="url(#t)"/>` : '') + sh.d + `</g>` +
+      `<text x="200" y="508" text-anchor="middle" font-family="Georgia,serif" font-size="14" letter-spacing="5" fill="#8a8578">${label}</text>` +
+      `<text x="200" y="524" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" letter-spacing="3" fill="#b0ab9f">SAMPLE ILLUSTRATION</text></svg>`;
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  };
+})();
+</script><script>/* SHAHIN STORE – core state: language, cart, wishlist, coupons, helpers.
+   Phase 1 persists to localStorage. Phase 2 swaps the persistence layer for Supabase
+   (cart merge on login, wishlists table) without changing the public API below. */
+(function () {
+  const KEY = { cart: 'shahin.cart.v1', wish: 'shahin.wish.v1', lang: 'shahin.lang', coupon: 'shahin.coupon', recent: 'shahin.recent.v1' };
+  const read = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch (e) { return d; } };
+  const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+
+  // Delivery settings – become admin-editable (settings table) in Phase 2.
+  const SETTINGS = { deliveryInsideDhaka: 70, deliveryOutsideDhaka: 130, freeDeliveryOver: 5000, currency: '৳' };
+  // SAMPLE coupons for development only. Real coupons are validated server-side in Phase 2.
+  const SAMPLE_COUPONS = { WELCOME10: { type: 'percent', value: 10, label: '10% off (sample)' }, SAVE200: { type: 'flat', value: 200, label: '৳200 off (sample)', min: 2000 } };
+
+  const I18N = {
+    en: { shop:'Shop', men:'Men', women:'Women', kids:'Kids', new:'New Arrivals', sale:'Sale', search:'Search products…', cart:'Cart', wishlist:'Wishlist', account:'Account', shopNow:'Shop Now', explore:'Explore Collection', addCart:'Add to Cart', buyNow:'Buy Now', viewAll:'View all', checkout:'Proceed to Checkout', continue:'Continue Shopping', subtotal:'Subtotal', discount:'Discount', delivery:'Delivery', total:'Grand Total', apply:'Apply', remove:'Remove', inStock:'In stock', outStock:'Out of stock', free:'Free', selectSize:'Please select a size', selectColor:'Please select a color', added:'Added to cart', emptyCart:'Your cart is empty', sortBy:'Sort by', filters:'Filters', noResults:'No products match your filters.', help:'Help', home:'Home', about:'About', contact:'Contact', purchase:'Purchase' },
+    bn: { shop:'শপ', men:'পুরুষ', women:'নারী', kids:'শিশু', new:'নতুন আগমন', sale:'সেল', search:'পণ্য খুঁজুন…', cart:'কার্ট', wishlist:'উইশলিস্ট', account:'অ্যাকাউন্ট', shopNow:'এখনই কিনুন', explore:'কালেকশন দেখুন', addCart:'কার্টে যোগ করুন', buyNow:'এখনই কিনুন', viewAll:'সব দেখুন', checkout:'চেকআউটে যান', continue:'কেনাকাটা চালিয়ে যান', subtotal:'সাবটোটাল', discount:'ডিসকাউন্ট', delivery:'ডেলিভারি', total:'সর্বমোট', apply:'প্রয়োগ', remove:'সরান', inStock:'স্টকে আছে', outStock:'স্টক নেই', free:'ফ্রি', selectSize:'অনুগ্রহ করে সাইজ নির্বাচন করুন', selectColor:'অনুগ্রহ করে রং নির্বাচন করুন', added:'কার্টে যোগ হয়েছে', emptyCart:'আপনার কার্ট খালি', sortBy:'সাজান', filters:'ফিল্টার', noResults:'কোনো পণ্য পাওয়া যায়নি।', help:'সহায়তা', home:'হোম', about:'আমাদের সম্পর্কে', contact:'যোগাযোগ', purchase:'ক্রয়' }
+  };
+
+  const S = {
+    settings: SETTINGS, SAMPLE_COUPONS,
+    lang: read(KEY.lang, 'en'),
+    t(k) { return (I18N[S.lang] && I18N[S.lang][k]) || I18N.en[k] || k; },
+    setLang(l) { S.lang = l; write(KEY.lang, l); location.reload(); },
+    money(n) { const v = Math.round(n); const s = S.lang === 'bn' ? String(v).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]) : v.toLocaleString('en-IN'); return SETTINGS.currency + s; },
+    esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); },
+    pname(p) { return S.lang === 'bn' && p.nameBn ? p.nameBn : p.name; },
+    catLabel(slug, sub) {
+      const c = CATEGORIES.find(x => x.slug === slug); if (!c) return '';
+      const s = c.children.find(x => x[0] === sub);
+      return S.lang === 'bn' ? (s ? s[2] : c.bn) : (s ? s[1] : c.en);
+    },
+    product(id) { return PRODUCTS.find(p => p.id === Number(id)); },
+    discountPct(p) { return p.oldPrice ? Math.round((1 - p.price / p.oldPrice) * 100) : 0; },
+
+    /* ---- cart ---- */
+    cart: read(KEY.cart, []),
+    saveCart() { write(KEY.cart, S.cart); S.emit(); },
+    addToCart(pid, size, color, qty = 1) {
+      const p = S.product(pid); if (!p) return false;
+      const key = `${pid}|${size}|${color}`;
+      const ex = S.cart.find(i => i.key === key);
+      const next = (ex ? ex.qty : 0) + qty;
+      if (next > p.stock) { S.toast(`Only ${p.stock} available`); return false; }
+      if (ex) ex.qty = next; else S.cart.push({ key, pid: Number(pid), size, color, qty });
+      S.saveCart(); return true;
+    },
+    setQty(key, qty) {
+      const i = S.cart.find(x => x.key === key); if (!i) return;
+      const p = S.product(i.pid); i.qty = Math.max(1, Math.min(qty, p.stock)); S.saveCart();
+    },
+    removeFromCart(key) { S.cart = S.cart.filter(i => i.key !== key); S.saveCart(); },
+    cartCount() { return S.cart.reduce((n, i) => n + i.qty, 0); },
+    coupon: read(KEY.coupon, null),
+    applyCoupon(code) {
+      const c = SAMPLE_COUPONS[(code || '').trim().toUpperCase()];
+      if (!c) return { ok: false, msg: 'Invalid coupon code' };
+      const sub = S.totals(true).subtotal;
+      if (c.min && sub < c.min) return { ok: false, msg: `Minimum order ${S.money(c.min)} for this coupon` };
+      S.coupon = (code || '').trim().toUpperCase(); write(KEY.coupon, S.coupon); S.emit();
+      return { ok: true, msg: c.label + ' applied' };
+    },
+    clearCoupon() { S.coupon = null; write(KEY.coupon, null); S.emit(); },
+    totals(noCoupon) {
+      const lines = S.cart.map(i => ({ ...i, p: S.product(i.pid) })).filter(l => l.p);
+      const mrp = lines.reduce((n, l) => n + (l.p.oldPrice || l.p.price) * l.qty, 0);
+      const subtotal = lines.reduce((n, l) => n + l.p.price * l.qty, 0);
+      const saleSavings = mrp - subtotal;
+      let couponOff = 0;
+      const c = !noCoupon && S.coupon && SAMPLE_COUPONS[S.coupon];
+      if (c && (!c.min || subtotal >= c.min)) couponOff = c.type === 'percent' ? Math.round(subtotal * c.value / 100) : c.value;
+      const after = subtotal - couponOff;
+      const delivery = !lines.length ? 0 : after >= SETTINGS.freeDeliveryOver ? 0 : SETTINGS.deliveryInsideDhaka;
+      return { lines, mrp, subtotal, saleSavings, couponOff, delivery, total: after + delivery };
+    },
+
+    /* ---- wishlist ---- */
+    wish: read(KEY.wish, []),
+    isWished(id) { return S.wish.includes(Number(id)); },
+    toggleWish(id) {
+      id = Number(id);
+      if (S.isWished(id)) { S.wish = S.wish.filter(x => x !== id); S.toast('Removed from wishlist'); }
+      else { S.wish.push(id); S.toast('Saved to wishlist'); }
+      write(KEY.wish, S.wish); S.emit();
+    },
+
+    /* ---- recently viewed ---- */
+    recent: read(KEY.recent, []),
+    pushRecent(id) { S.recent = [Number(id), ...S.recent.filter(x => x !== Number(id))].slice(0, 8); write(KEY.recent, S.recent); },
+
+    /* ---- events / ui ---- */
+    listeners: [],
+    on(fn) { S.listeners.push(fn); },
+    emit() { S.listeners.forEach(f => f()); },
+    toast(msg) {
+      const t = document.getElementById('toast'); if (!t) return;
+      t.textContent = msg; t.classList.add('show'); clearTimeout(S._tt); S._tt = setTimeout(() => t.classList.remove('show'), 2200);
+    },
+
+    /* ---- product card (shared) ---- */
+    card(p) {
+      const d = S.discountPct(p), e = S.esc;
+      const sw = p.colors.slice(0, 5).map(c => `<i class="sw" title="${e(c)}" style="background:${COLORS[c]}"></i>`).join('');
+      return `<article class="pcard">
+        <a class="pimg" href="product.html?slug=${e(p.slug)}" aria-label="${e(p.name)}">
+          ${d ? `<span class="tag sale">-${d}%</span>` : p.isNew ? `<span class="tag">New</span>` : ''}
+          <img src="${productImage(p, 0)}" alt="${e(p.name)}" loading="lazy" width="400" height="533">
+          <img class="alt" src="${productImage(p, 1)}" alt="" loading="lazy" width="400" height="533">
+        </a>
+        <button class="wish ${S.isWished(p.id) ? 'on' : ''}" data-wish="${p.id}" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9.2C1.2 8.7 3 5 6.6 5c2 0 3.6 1.1 5.4 3 1.8-1.9 3.4-3 5.4-3C21 5 22.800 8.700 21.300 11.800 19 16.400 12 21 12 21z"/></svg></button>
+        <div class="pinfo">
+          <div class="cat">${e(S.catLabel(p.cat, p.sub))}</div>
+          <h3><a href="product.html?slug=${e(p.slug)}">${e(S.pname(p))}</a></h3>
+          <div class="price">${S.money(p.price)}${p.oldPrice ? `<s>${S.money(p.oldPrice)}</s><span class="off">-${d}%</span>` : ''}</div>
+          <div class="swatches">${sw}</div>
+        </div></article>`;
+    }
+  };
+
+  // Delegated wishlist buttons on any page
+  document.addEventListener('click', e => {
+    const w = e.target.closest('[data-wish]');
+    if (w) { e.preventDefault(); S.toggleWish(w.dataset.wish); document.querySelectorAll(`[data-wish="${w.dataset.wish}"]`).forEach(b => b.classList.toggle('on', S.isWished(w.dataset.wish))); }
+  });
+  window.Store = S;
+})();
+</script><script>/* SHAHIN STORE – shared layout: announcement bar, sticky header, mega menu,
+   mobile drawer, search, footer, floating help buttons, toast, loader. */
+(function () {
+  const S = Store, e = S.esc;
+  // Contact details are placeholders – admin-editable in Phase 2 (settings table).
+  const CONTACT = { whatsapp: '8801XXXXXXXXX', messenger: 'shahinstore', email: 'support@shahinstore.example', phone: '+880 1XXX-XXXXXX' };
+  const ico = {
+    search: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.500-3.500"/></svg>',
+    user: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.500-6 8-6s7 2 8 6"/></svg>',
+    heart: '<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.600-9.300-9.200C1.200 8.700 3 5 6.600 5c2 0 3.600 1.100 5.400 3 1.800-1.900 3.400-3 5.400-3C21 5 22.800 8.700 21.300 11.800 19 16.400 12 21 12 21z"/></svg>',
+    bag: '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>',
+    menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
+  };
+  const catLink = (c, s) => `shop.html?cat=${c.slug}${s ? '&sub=' + s[0] : ''}`;
+
+  const mega = CATEGORIES.map(c => `<div class="nav-item"><a href="shop.html?cat=${c.slug}">${e(S.lang === 'bn' ? c.bn : ({ men: 'Men', women: 'Women', kids: 'Kids', special: 'Special' })[c.slug])}</a>
+    <div class="mega"><div class="container"><h4>${e(S.lang === 'bn' ? c.bn : c.en)}</h4>${c.children.map(s => `<a href="${catLink(c, s)}">${e(S.lang === 'bn' ? s[2] : s[1])}</a>`).join('')}</div></div></div>`).join('');
+
+  const drawer = CATEGORIES.map(c => `<details><summary>${e(S.lang === 'bn' ? c.bn : c.en)}</summary>${c.children.map(s => `<a href="${catLink(c, s)}">${e(S.lang === 'bn' ? s[2] : s[1])}</a>`).join('')}</details>`).join('');
+
+  const header = `
+  <div class="announce">${S.lang === 'bn' ? 'সারা বাংলাদেশে ডেলিভারি · ৳৫,০০০+ অর্ডারে ফ্রি ডেলিভারি' : `Nationwide delivery across Bangladesh · Free delivery over <b>${S.money(S.settings.freeDeliveryOver)}</b>`}</div>
+  <header class="site"><div class="container hbar">
+    <button class="ibtn hamburger" id="openMenu" aria-label="Menu">${ico.menu}</button>
+    <a class="logo" href="index.html" aria-label="SHAHIN STORE home"><span class="logo-mark">S</span><span class="word">SHAHIN<small>STORE</small></span></a>
+    <nav class="main" aria-label="Primary">
+      <div class="nav-item"><a href="index.html" data-nav="home">${S.t('home')}</a></div>${mega}
+      <div class="nav-item"><a href="shop.html?cat=special&sub=new-arrivals">${S.t('new')}</a></div>
+      <div class="nav-item"><a href="shop.html?sale=1" style="color:var(--danger)">${S.t('sale')}</a></div>
+      <div class="nav-item"><a href="info.html?p=about" data-nav="about">${S.t('about')}</a></div>
+      <div class="nav-item"><a href="info.html?p=contact" data-nav="contact">${S.t('contact')}</a></div>
+      <div class="nav-item"><a href="cart.html" data-nav="cart">${S.t('cart')}</a></div>
+      <div class="nav-item"><a href="checkout.html" data-nav="purchase">${S.t('purchase')}</a></div></nav>
+    <div class="hactions">
+      <button class="lang" id="langBtn" aria-label="Switch language">${S.lang === 'en' ? 'বাংলা' : 'EN'}</button>
+      <button class="ibtn" id="toggleSearch" aria-label="${S.t('search')}">${ico.search}</button>
+      <a class="ibtn" href="account.html" aria-label="${S.t('account')}">${ico.user}</a>
+      <a class="ibtn" href="wishlist.html" aria-label="${S.t('wishlist')}">${ico.heart}<span class="badge" id="wishBadge"></span></a>
+      <a class="ibtn" href="cart.html" aria-label="${S.t('cart')}">${ico.bag}<span class="badge" id="cartBadge"></span></a>
+    </div></div>
+    <div class="searchbar" id="searchbar"><div class="container"><form action="shop.html" method="get" role="search">
+      <input name="q" type="search" placeholder="${S.t('search')}" aria-label="Search" autocomplete="off"><button class="btn" type="submit">${ico.search.replace('<svg', '<svg width="16" height="16" stroke="currentColor" fill="none"')}</button></form></div></div>
+  </header>
+  <div class="drawer" id="drawer"><div class="scrim" id="scrim"></div><div class="panel">
+    <a class="logo" href="index.html" style="margin-bottom:18px"><span class="logo-mark">S</span>SHAHIN</a>
+    <a class="plain" href="index.html">${S.t('home')}</a>
+    ${drawer}
+    <a class="plain" href="info.html?p=about">${S.t('about')}</a><a class="plain" href="info.html?p=contact">${S.t('contact')}</a><a class="plain" href="checkout.html">${S.t('purchase')}</a>
+    <a class="plain" href="shop.html?sale=1">${S.t('sale')}</a><a class="plain" href="wishlist.html">${S.t('wishlist')}</a><a class="plain" href="account.html">${S.t('account')}</a><a class="plain" href="cart.html">${S.t('cart')}</a></div></div>`;
+
+  const footer = `
+  <footer class="site"><div class="container"><div class="cols">
+    <div><a class="logo" href="index.html" style="color:#fff"><span class="logo-mark" style="background:var(--gold);color:#111">S</span>SHAHIN</a>
+      <p style="margin:14px 0;font-size:.9rem;max-width:32ch">Premium fashion for men, women and kids. Delivered across Bangladesh.</p>
+      <p style="font-size:.85rem">${e(CONTACT.phone)}<br>${e(CONTACT.email)}</p></div>
+    <div><h5>Shop</h5><a href="shop.html?cat=men">Men</a><a href="shop.html?cat=women">Women</a><a href="shop.html?cat=kids">Kids</a><a href="shop.html?sale=1">Sale</a></div>
+    <div><h5>Support</h5><a href="track.html">Order Tracking</a><a href="info.html?p=faq">FAQ</a><a href="info.html?p=size-guide">Size Guide</a><a href="info.html?p=contact">Contact Us</a></div>
+    <div><h5>Company</h5><a href="info.html?p=about">About Us</a><a href="info.html?p=shipping">Shipping Policy</a><a href="info.html?p=returns">Return &amp; Refund</a><a href="info.html?p=privacy">Privacy Policy</a><a href="info.html?p=terms">Terms &amp; Conditions</a></div>
+  </div><div class="bottom"><span>© ${new Date().getFullYear()} SHAHIN STORE. All rights reserved.</span><span>Payments: Cash on Delivery · bKash · Nagad · Rocket · Online (enabled once gateway credentials are connected)</span></div></div></footer>
+  <div class="float-help"><a class="fh-ms" href="https://m.me/${e(CONTACT.messenger)}" target="_blank" rel="noopener" aria-label="Messenger support">MSG</a>
+  <a class="fh-wa" href="https://wa.me/${e(CONTACT.whatsapp)}" target="_blank" rel="noopener" aria-label="WhatsApp support">WA</a></div>
+  <div id="toast" role="status" aria-live="polite"></div>`;
+
+  document.body.insertAdjacentHTML('afterbegin', `<div id="loader"><span>SHAHIN</span></div>` + header);
+  document.body.insertAdjacentHTML('beforeend', footer);
+  document.documentElement.lang = S.lang;
+
+  const $ = id => document.getElementById(id);
+  const drawerEl = $('drawer');
+  $('openMenu').onclick = () => drawerEl.classList.add('open');
+  $('scrim').onclick = () => drawerEl.classList.remove('open');
+  $('toggleSearch').onclick = () => { $('searchbar').classList.toggle('open'); const i = document.querySelector('#searchbar input'); i && i.focus(); };
+  $('langBtn').onclick = () => S.setLang(S.lang === 'en' ? 'bn' : 'en');
+  document.addEventListener('keydown', ev => { if (ev.key === 'Escape') { drawerEl.classList.remove('open'); $('searchbar').classList.remove('open'); } });
+
+  (function active() {
+    const f = location.pathname.split('/').pop() || 'index.html', q = new URLSearchParams(location.search);
+    const key = f === 'index.html' ? 'home' : f === 'cart.html' ? 'cart' : f === 'checkout.html' ? 'purchase' : f === 'info.html' ? (q.get('p') === 'contact' ? 'contact' : q.get('p') === 'about' ? 'about' : '') : '';
+    document.querySelectorAll('nav.main a').forEach(a => {
+      const u = new URL(a.href, location.href);
+      const on = key ? a.dataset.nav === key : (f === 'shop.html' && u.pathname.endsWith('shop.html') && (q.get('cat') ? u.searchParams.get('cat') === q.get('cat') : q.get('sale') ? u.searchParams.get('sale') === '1' : false));
+      if (on) a.classList.add('active');
+    });
+  })();
+
+  function badges() {
+    const c = S.cartCount(), w = S.wish.length;
+    $('cartBadge').textContent = c || ''; $('cartBadge').dataset.n = c;
+    $('wishBadge').textContent = w || ''; $('wishBadge').dataset.n = w;
+  }
+  S.on(badges); badges();
+  window.addEventListener('load', () => setTimeout(() => $('loader').classList.add('done'), 150));
+  window.SITE_CONTACT = CONTACT;
+})();
+</script><script>/* SHAHIN STORE – page controllers. <body data-page="home|shop|product|cart|wishlist|info"> */
+(function () {
+  const S = Store, e = S.esc, $ = (s, r = document) => r.querySelector(s), money = S.money;
+  const qs = new URLSearchParams(location.search);
+  const grid = (list, cls = 'g4') => `<div class="grid ${cls}">${list.map(S.card).join('')}</div>`;
+  const sample = () => window.SAMPLE_DATA ? `<div class="notice container" style="margin:0 auto 24px;max-width:var(--max)"><b>Sample data.</b> Products, prices and stock shown here are development placeholders, not real inventory.</div>` : '';
+  const setMeta = (title, desc) => {
+    document.title = title + ' | SHAHIN STORE';
+    let m = $('meta[name=description]'); if (!m) { m = document.createElement('meta'); m.name = 'description'; document.head.appendChild(m); }
+    m.content = desc;
+    [['og:title', title], ['og:description', desc], ['og:type', 'website']].forEach(([k, v]) => { let t = $(`meta[property="${k}"]`); if (!t) { t = document.createElement('meta'); t.setAttribute('property', k); document.head.appendChild(t); } t.content = v; });
+  };
+  const sec = (eyebrow, title, link, body, extra = '') => `<section class="block ${extra}"><div class="container"><div class="sec-head"><div><span class="eyebrow">${eyebrow}</span><h2>${title}</h2></div>${link ? `<a class="link-arrow" href="${link}">${S.t('viewAll')}</a>` : ''}</div>${body}</div></section>`;
+  const tileBg = ['linear-gradient(160deg,#2a2723,#5b4d33)', 'linear-gradient(160deg,#3a1f28,#8a5b66)', 'linear-gradient(160deg,#1f3a44,#6f98a8)', 'linear-gradient(160deg,#222,#777)'];
+
+  const pages = {
+    home() {
+      setMeta('Premium Fashion for Men, Women & Kids', 'Shop premium clothing online in Bangladesh. Free delivery over ৳5,000.');
+      const P = PRODUCTS, pick = (f, n = 4) => P.filter(f).slice(0, n);
+      const tiles = CATEGORIES.slice(0, 3).map((c, i) => `<a class="cat-tile" href="shop.html?cat=${c.slug}"><div class="bg" style="background:${tileBg[i]}"></div><div><small>${c.children.length} ${S.lang === 'bn' ? 'ক্যাটাগরি' : 'categories'}</small><span>${e(S.lang === 'bn' ? c.bn : c.en)}</span></div></a>`).join('') +
+        `<a class="cat-tile" href="shop.html?sale=1"><div class="bg" style="background:${tileBg[3]}"></div><div><small>${S.lang === 'bn' ? 'অফার' : 'Offers'}</small><span>${S.t('sale')}</span></div></a>`;
+      const col = (slug, label) => sec(label[0], label[1], `shop.html?cat=${slug}`, grid(pick(p => p.cat === slug)));
+      $('#app').innerHTML = `
+      <section class="hero"><div class="container"><div class="eyebrow">${S.lang === 'bn' ? 'নতুন কালেকশন' : 'New Season Collection'}</div>
+        <h1>${S.lang === 'bn' ? 'আপনার স্টাইল, আপনার পরিচয়' : 'Elegance, Tailored for You'}</h1>
+        <p>${S.lang === 'bn' ? 'পুরুষ, নারী ও শিশুদের জন্য প্রিমিয়াম পোশাক।' : 'Premium fashion for men, women and kids — designed for Bangladesh, delivered to your door.'}</p>
+        <div class="cta"><a class="btn gold" href="shop.html">${S.t('shopNow')}</a><a class="btn ghost" href="shop.html?cat=special&sub=new-arrivals" style="color:#fff">${S.t('explore')}</a></div></div></section>
+      ${sample() ? `<div style="padding-top:24px">${sample()}</div>` : ''}
+      ${sec('Browse', S.lang === 'bn' ? 'ফিচার্ড ক্যাটাগরি' : 'Featured Categories', '', `<div class="grid g4">${tiles}</div>`, 'x')}
+      ${sec('Just in', S.t('new'), 'shop.html?flag=new', grid(pick(p => p.isNew)))}
+      ${sec('Most loved', S.lang === 'bn' ? 'বেস্ট সেলার' : 'Best Sellers', 'shop.html?flag=best', grid(pick(p => p.best)))}
+      <div class="container"><div class="promo"><div><span class="eyebrow" style="color:var(--gold);letter-spacing:.3em;font-size:.7rem;text-transform:uppercase">${S.lang === 'bn' ? 'বিশেষ অফার' : 'Special Offer'}</span>
+        <h2>${S.lang === 'bn' ? 'নির্বাচিত পণ্যে ছাড়' : 'Reduced prices on selected styles'}</h2><p style="color:#bbb;margin-bottom:24px">${S.lang === 'bn' ? 'সীমিত সময়ের জন্য।' : 'While stock lasts.'}</p><a class="btn gold" href="shop.html?sale=1">${S.t('sale')}</a></div><div class="art"></div></div></div>
+      ${sec('Trending', S.lang === 'bn' ? 'ট্রেন্ডিং' : 'Trending Now', 'shop.html?flag=trending', grid(pick(p => p.trending)))}
+      ${col('men', ['Men', S.lang === 'bn' ? 'পুরুষদের কালেকশন' : "Men's Fashion"])}
+      ${col('women', ['Women', S.lang === 'bn' ? 'নারীদের কালেকশন' : "Women's Fashion"])}
+      ${col('kids', ['Kids', S.lang === 'bn' ? 'শিশুদের কালেকশন' : "Kids' Fashion"])}
+      ${sec('Seasonal', S.lang === 'bn' ? 'শীতকালীন কালেকশন' : 'Winter Collection', 'shop.html?flag=winter', grid(pick(p => p.winter)))}
+      ${sec('Our labels', S.lang === 'bn' ? 'আমাদের ব্র্যান্ড' : 'Featured Brands', '', `<div class="brands">${BRANDS.map(b => `<div class="brand">${e(b.toUpperCase())}</div>`).join('')}</div>`)}
+      ${sec('Reviews', S.lang === 'bn' ? 'গ্রাহক রিভিউ' : 'Customer Reviews', '', `<div class="notice">Verified customer reviews will appear here once real customers have purchased and reviewed products. No placeholder reviews are shown.</div>`)}
+      <section class="news"><h2>${S.lang === 'bn' ? 'নিউজলেটার' : 'Join our newsletter'}</h2><p style="color:#aaa;margin-top:8px">${S.lang === 'bn' ? 'নতুন কালেকশন ও অফারের খবর পান।' : 'New arrivals and offers, straight to your inbox.'}</p>
+        <form id="newsForm"><input type="email" required placeholder="Email address" aria-label="Email"><button class="btn gold" type="submit">Subscribe</button></form><div class="msg" id="newsMsg"></div></section>
+      ${sec('Follow us', 'Instagram', '', `<div class="insta">${tileBg.concat(tileBg).slice(0, 6).map((b, i) => `<div style="background:${b};color:#fff">Post ${i + 1}</div>`).join('')}</div><p class="noreview" style="margin-top:10px">Placeholder tiles – connect your Instagram feed in Phase 2.</p>`)}`;
+      $('#newsForm').onsubmit = ev => { ev.preventDefault(); $('#newsMsg').className = 'msg err'; $('#newsMsg').textContent = 'Newsletter signup needs the backend (Phase 2). Nothing was saved.'; };
+    },
+
+    shop() {
+      const state = { cat: qs.get('cat') || '', sub: qs.get('sub') || '', q: qs.get('q') || '', sale: qs.get('sale') === '1', flag: qs.get('flag') || '',
+        sizes: new Set(), colors: new Set(), brands: new Set(), min: '', max: '', avail: false, disc: 0, sort: 'newest' };
+      const cat = CATEGORIES.find(c => c.slug === state.cat);
+      const SPECIAL = { 'new-arrivals': 'isNew', 'best-sellers': 'best', trending: 'trending', premium: 'premium', sale: 'sale', winter: 'winter', summer: 'summer' };
+      const FLAGS = { new: 'isNew', best: 'best', trending: 'trending', winter: 'winter', summer: 'summer' };
+      const title = state.q ? `Search: “${state.q}”` : cat ? (state.sub ? S.catLabel(cat.slug, state.sub) : (S.lang === 'bn' ? cat.bn : cat.en)) : state.sale ? S.t('sale') : state.flag ? state.flag[0].toUpperCase() + state.flag.slice(1) : (S.lang === 'bn' ? 'সব পণ্য' : 'Shop All');
+      setMeta(title, `Browse ${title} at SHAHIN STORE.`);
+      const allSizes = [...new Set(PRODUCTS.flatMap(p => p.sizes))];
+      const subs = cat ? cat.children.map(s => `<label><input type="radio" name="sub" value="${s[0]}" ${state.sub === s[0] ? 'checked' : ''}> ${e(S.lang === 'bn' ? s[2] : s[1])}</label>`).join('') : CATEGORIES.map(c => `<label><input type="radio" name="cat" value="${c.slug}"> ${e(S.lang === 'bn' ? c.bn : c.en)}</label>`).join('');
+      $('#app').innerHTML = `<div class="container"><div class="crumbs"><a href="index.html">Home</a> / ${e(title)}</div>${sample()}
+      <h1 class="serif" style="margin:8px 0 20px">${e(title)}</h1>
+      <div class="shop"><aside class="filters" id="filters"><button class="btn outline block filter-toggle" id="closeF" style="margin-bottom:12px">Close</button>
+        <div class="fgroup"><h4>${cat ? 'Subcategory' : 'Category'}</h4>${subs}${(state.cat || state.sub) ? `<a href="shop.html" class="msg" style="display:block;margin-top:8px;text-decoration:underline">Clear category</a>` : ''}</div>
+        <div class="fgroup"><h4>Price (৳)</h4><div class="range"><input id="pmin" type="number" min="0" placeholder="Min"><input id="pmax" type="number" min="0" placeholder="Max"></div></div>
+        <div class="fgroup"><h4>Size</h4><div class="chips" id="fsize">${allSizes.map(s => `<button class="chip" data-v="${e(s)}">${e(s)}</button>`).join('')}</div></div>
+        <div class="fgroup"><h4>Color</h4><div class="chips" id="fcolor">${Object.keys(COLORS).map(c => `<button class="chip color" data-v="${c}"><i class="sw" style="background:${COLORS[c]}"></i>${c}</button>`).join('')}</div></div>
+        <div class="fgroup"><h4>Brand</h4>${BRANDS.map(b => `<label><input type="checkbox" class="fbrand" value="${e(b)}"> ${e(b)}</label>`).join('')}</div>
+        <div class="fgroup"><h4>Availability</h4><label><input type="checkbox" id="favail"> In stock only</label></div>
+        <div class="fgroup"><h4>Discount</h4>${[0, 10, 20, 30].map(d => `<label><input type="radio" name="disc" value="${d}" ${d === 0 ? 'checked' : ''}> ${d ? d + '% or more' : 'Any'}</label>`).join('')}</div>
+        <div class="fgroup"><h4>Rating</h4><p class="noreview">Rating filter activates once real customer reviews exist.</p></div></aside>
+      <div><div class="toolbar"><div><button class="btn outline filter-toggle" id="openF">${S.t('filters')}</button> <span id="count" style="color:var(--muted);font-size:.9rem"></span></div>
+        <label>${S.t('sortBy')} <select id="sort"><option value="newest">Newest</option><option value="pa">Price: Low to High</option><option value="pd">Price: High to Low</option><option value="pop">Most Popular</option><option value="rate">Best Rated</option></select></label></div>
+        <div id="results"></div></div></div></div>`;
+
+      function run() {
+        let L = PRODUCTS.filter(p => {
+          if (state.cat && state.cat !== 'special' && p.cat !== state.cat) return false;
+          if (state.sub) { if (state.cat === 'special') { if (!p[SPECIAL[state.sub]]) return false; } else if (p.sub !== state.sub) return false; }
+          if (state.cat === 'special' && !state.sub) return true;
+          if (state.sale && !p.sale) return false;
+          if (state.flag && !p[FLAGS[state.flag]]) return false;
+          if (state.q) { const h = `${p.name} ${p.nameBn} ${p.brand} ${p.sub} ${p.cat} ${S.catLabel(p.cat, p.sub)}`.toLowerCase(); if (!state.q.toLowerCase().split(/\s+/).every(w => h.includes(w))) return false; }
+          if (state.sizes.size && !p.sizes.some(s => state.sizes.has(s))) return false;
+          if (state.colors.size && !p.colors.some(c => state.colors.has(c))) return false;
+          if (state.brands.size && !state.brands.has(p.brand)) return false;
+          if (state.min !== '' && p.price < +state.min) return false;
+          if (state.max !== '' && p.price > +state.max) return false;
+          if (state.avail && p.stock < 1) return false;
+          if (state.disc && S.discountPct(p) < state.disc) return false;
+          return true;
+        });
+        const sorts = { newest: (a, b) => b.created - a.created, pa: (a, b) => a.price - b.price, pd: (a, b) => b.price - a.price, pop: (a, b) => b.popularity - a.popularity, rate: (a, b) => (b.rating || 0) - (a.rating || 0) || b.popularity - a.popularity };
+        L.sort(sorts[state.sort]);
+        $('#count').textContent = `${L.length} ${S.lang === 'bn' ? 'টি পণ্য' : 'products'}`;
+        $('#results').innerHTML = L.length ? grid(L, 'g3') : `<div class="empty">${S.t('noResults')}</div>`;
+      }
+      const toggleSet = (box, set) => $(box).addEventListener('click', ev => { const b = ev.target.closest('.chip'); if (!b) return; const v = b.dataset.v; set.has(v) ? set.delete(v) : set.add(v); b.classList.toggle('on'); run(); });
+      toggleSet('#fsize', state.sizes); toggleSet('#fcolor', state.colors);
+      document.querySelectorAll('.fbrand').forEach(c => c.onchange = () => { c.checked ? state.brands.add(c.value) : state.brands.delete(c.value); run(); });
+      $('#pmin').oninput = ev => { state.min = ev.target.value; run(); }; $('#pmax').oninput = ev => { state.max = ev.target.value; run(); };
+      $('#favail').onchange = ev => { state.avail = ev.target.checked; run(); };
+      document.querySelectorAll('[name=disc]').forEach(r => r.onchange = () => { state.disc = +r.value; run(); });
+      document.querySelectorAll('[name=sub]').forEach(r => r.onchange = () => { state.sub = r.value; run(); });
+      document.querySelectorAll('[name=cat]').forEach(r => r.onchange = () => { location.href = `shop.html?cat=${r.value}`; });
+      $('#sort').onchange = ev => { state.sort = ev.target.value; run(); };
+      $('#openF').onclick = () => $('#filters').classList.add('open'); $('#closeF').onclick = () => $('#filters').classList.remove('open');
+      run();
+    },
+
+    product() {
+      const p = PRODUCTS.find(x => x.slug === qs.get('slug'));
+      if (!p) { location.replace('404.html'); return; }
+      S.pushRecent(p.id);
+      setMeta(p.name, p.desc);
+      const sel = { size: null, color: p.colors.length === 1 ? p.colors[0] : null, qty: 1, view: 0 };
+      const d = S.discountPct(p);
+      const ld = { '@context': 'https://schema.org', '@type': 'Product', name: p.name, brand: { '@type': 'Brand', name: p.brand }, description: p.desc, offers: { '@type': 'Offer', priceCurrency: 'BDT', price: p.price, availability: p.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' } };
+      const sc = document.createElement('script'); sc.type = 'application/ld+json'; sc.textContent = JSON.stringify(ld); document.head.appendChild(sc);
+      const related = PRODUCTS.filter(x => x.cat === p.cat && x.id !== p.id).slice(0, 4);
+      const recent = S.recent.filter(i => i !== p.id).map(S.product).filter(Boolean).slice(0, 4);
+      $('#app').innerHTML = `<div class="container"><div class="crumbs"><a href="index.html">Home</a> / <a href="shop.html?cat=${p.cat}">${e(CATEGORIES.find(c => c.slug === p.cat).en)}</a> / ${e(p.name)}</div>${sample()}
+      <div class="pd"><div class="gallery"><div class="thumbs" id="thumbs"></div><div class="mainimg"><img id="mainimg" alt="${e(p.name)}" width="400" height="533"></div></div>
+      <div><div class="cat" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)">${e(p.brand)}</div>
+        <h1>${e(S.pname(p))}</h1>
+        <div class="noreview" style="margin-bottom:8px">${p.reviews ? '' : 'No reviews yet'}</div>
+        <div class="price">${money(p.price)}${p.oldPrice ? `<s>${money(p.oldPrice)}</s><span class="off">-${d}%</span>` : ''}</div>
+        <p style="margin:16px 0;color:#555">${e(p.desc)}</p>
+        <div class="stock ${p.stock > 0 ? 'in' : 'out'}">● ${p.stock > 0 ? (p.stock <= 5 ? `Only ${p.stock} left` : S.t('inStock')) : S.t('outStock')}</div>
+        <div class="opt"><h4>Color <span id="colorName" style="text-transform:none;letter-spacing:0;color:var(--muted)"></span></h4><div id="colors">${p.colors.map(c => `<button class="cdot ${sel.color === c ? 'on' : ''}" data-v="${c}" style="background:${COLORS[c]}" aria-label="${c}" title="${c}"></button>`).join('')}</div></div>
+        <div class="opt"><h4>Size <a id="sgLink">Size guide</a></h4><div id="sizes">${p.sizes.map(s => `<button class="size-btn" data-v="${e(s)}">${e(s)}</button>`).join('')}</div></div>
+        <div class="opt"><h4>Quantity</h4><div class="qty"><button id="qm" aria-label="Decrease">−</button><input id="qv" value="1" inputmode="numeric" aria-label="Quantity"><button id="qp" aria-label="Increase">+</button></div></div>
+        <div class="buy-row"><button class="btn outline" id="addBtn" ${p.stock < 1 ? 'disabled' : ''}>${S.t('addCart')}</button><button class="btn" id="buyBtn" ${p.stock < 1 ? 'disabled' : ''}>${S.t('buyNow')}</button>
+          <button class="btn outline" data-wish="${p.id}" style="flex:0 0 auto">♡ ${S.t('wishlist')}</button></div>
+        <div class="msg err" id="pmsg"></div>
+        <div class="infoacc" style="margin-top:26px">
+          <details open><summary>Delivery information</summary><p>Inside Dhaka ${money(S.settings.deliveryInsideDhaka)} (placeholder rate). Free delivery on orders over ${money(S.settings.freeDeliveryOver)}. Delivery times are confirmed in your shipping policy.</p></details>
+          <details><summary>Return policy</summary><p>Return policy text is managed from the admin dashboard (Phase 2). Placeholder: contact support within the return window stated in the Return &amp; Refund Policy.</p></details>
+          <details><summary>Customer reviews</summary><p>No verified reviews yet. Reviews can be submitted by customers who have purchased this item (Phase 2).</p></details></div></div></div>
+      ${related.length ? `<section class="block" style="padding-top:20px"><div class="sec-head"><h2>Related products</h2></div>${grid(related)}</section>` : ''}
+      ${recent.length ? `<section class="block" style="padding-top:0"><div class="sec-head"><h2>Recently viewed</h2></div>${grid(recent)}</section>` : ''}</div>
+      <div class="modal" id="sgModal"><div class="box"><h3 class="serif">Size guide</h3><table class="sg"><tr><th>Size</th><th>Chest (in)</th><th>Waist (in)</th></tr><tr><td>S</td><td>36</td><td>30</td></tr><tr><td>M</td><td>38</td><td>32</td></tr><tr><td>L</td><td>40</td><td>34</td></tr><tr><td>XL</td><td>42</td><td>36</td></tr><tr><td>XXL</td><td>44</td><td>38</td></tr></table><p class="noreview" style="margin:10px 0">Generic reference chart. Replace with your measured per-product chart.</p><button class="btn block" id="sgClose">Close</button></div></div>`;
+
+      const draw = () => {
+        const imgs = [0, 1, 2, 3].map(v => productImage(p, v, sel.color || p.colors[0]));
+        $('#mainimg').src = imgs[sel.view];
+        $('#thumbs').innerHTML = imgs.map((s, i) => `<button class="${i === sel.view ? 'on' : ''}" data-i="${i}"><img src="${s}" alt="View ${i + 1}" loading="lazy"></button>`).join('');
+        $('#colorName').textContent = sel.color || '';
+      };
+      draw();
+      $('#thumbs').onclick = ev => { const b = ev.target.closest('button'); if (b) { sel.view = +b.dataset.i; draw(); } };
+      $('#colors').onclick = ev => { const b = ev.target.closest('.cdot'); if (!b) return; sel.color = b.dataset.v; document.querySelectorAll('.cdot').forEach(x => x.classList.toggle('on', x === b)); draw(); };
+      $('#sizes').onclick = ev => { const b = ev.target.closest('.size-btn'); if (!b) return; sel.size = b.dataset.v; document.querySelectorAll('.size-btn').forEach(x => x.classList.toggle('on', x === b)); };
+      const setQ = n => { sel.qty = Math.max(1, Math.min(p.stock, n || 1)); $('#qv').value = sel.qty; };
+      $('#qm').onclick = () => setQ(sel.qty - 1); $('#qp').onclick = () => setQ(sel.qty + 1); $('#qv').onchange = ev => setQ(parseInt(ev.target.value, 10));
+      $('#sgLink').onclick = () => $('#sgModal').classList.add('open'); $('#sgClose').onclick = () => $('#sgModal').classList.remove('open');
+      const valid = () => { const m = !sel.size ? S.t('selectSize') : !sel.color ? S.t('selectColor') : ''; $('#pmsg').textContent = m; return !m; };
+      $('#addBtn').onclick = () => { if (valid() && S.addToCart(p.id, sel.size, sel.color, sel.qty)) S.toast(S.t('added')); };
+      $('#buyBtn').onclick = () => { if (valid() && S.addToCart(p.id, sel.size, sel.color, sel.qty)) location.href = 'checkout.html'; };
+    },
+
+    cart() {
+      setMeta('Shopping Cart', 'Review your SHAHIN STORE cart.');
+      const render = () => {
+        const T = S.totals();
+        if (!T.lines.length) { $('#app').innerHTML = `<div class="container"><div class="empty"><h2 class="serif">${S.t('emptyCart')}</h2><p style="margin:12px 0 24px">Discover something you'll love.</p><a class="btn" href="shop.html">${S.t('continue')}</a></div></div>`; return; }
+        $('#app').innerHTML = `<div class="container"><h1 class="serif" style="padding:28px 0 20px">${S.t('cart')} (${S.cartCount()})</h1><div class="cart"><div>
+          ${T.lines.map(l => `<div class="citem"><a href="product.html?slug=${e(l.p.slug)}"><img src="${productImage(l.p, 0, l.color)}" alt="${e(l.p.name)}"></a>
+            <div><h3><a href="product.html?slug=${e(l.p.slug)}">${e(S.pname(l.p))}</a></h3><div class="meta">${e(l.color)} · ${e(l.size)} · ${money(l.p.price)}</div>
+              <div class="qty"><button data-dec="${e(l.key)}" aria-label="Decrease">−</button><input value="${l.qty}" data-q="${e(l.key)}" inputmode="numeric" aria-label="Quantity"><button data-inc="${e(l.key)}" aria-label="Increase">+</button></div>
+              <button class="rm" data-rm="${e(l.key)}">${S.t('remove')}</button></div>
+            <div class="ctotal"><b>${money(l.p.price * l.qty)}</b></div></div>`).join('')}
+          <a class="link-arrow" href="shop.html" style="display:inline-block;margin-top:10px">← ${S.t('continue')}</a></div>
+          <aside class="summary"><h3 class="serif">Order summary</h3>
+            <div class="sumrow"><span>${S.t('subtotal')}</span><span>${money(T.subtotal)}</span></div>
+            ${T.saleSavings ? `<div class="sumrow" style="color:var(--ok)"><span>Sale savings (already applied)</span><span>${money(T.saleSavings)}</span></div>` : ''}
+            ${T.couponOff ? `<div class="sumrow" style="color:var(--ok)"><span>${S.t('discount')} (${e(S.coupon)}) <a href="#" id="rmCoupon" class="rm">${S.t('remove')}</a></span><span>−${money(T.couponOff)}</span></div>` : ''}
+            <div class="sumrow"><span>${S.t('delivery')}</span><span>${T.delivery ? money(T.delivery) : S.t('free')}</span></div>
+            <form class="coupon" id="couponForm"><input id="cc" placeholder="Coupon code" aria-label="Coupon code"><button type="submit">${S.t('apply')}</button></form><div class="msg" id="cmsg"></div>
+            <div class="sumrow total"><span>${S.t('total')}</span><span>${money(T.total)}</span></div>
+            <a class="btn block" href="checkout.html" style="margin-top:18px">${S.t('checkout')}</a>
+            <p class="noreview" style="margin-top:12px">Delivery shown is the Inside-Dhaka rate; final charge is set by your delivery area at checkout. Coupons here are sample codes until the backend is connected.</p></aside></div></div>`;
+        $('#couponForm').onsubmit = ev => { ev.preventDefault(); const r = S.applyCoupon($('#cc').value); if (!r.ok) { $('#cmsg').className = 'msg err'; $('#cmsg').textContent = r.msg; } };
+        const rc = $('#rmCoupon'); if (rc) rc.onclick = ev => { ev.preventDefault(); S.clearCoupon(); };
+      };
+      $('#app').addEventListener('click', ev => {
+        const t = ev.target, g = a => t.closest(`[${a}]`) && t.closest(`[${a}]`).getAttribute(a);
+        let k;
+        if ((k = g('data-inc'))) S.setQty(k, S.cart.find(i => i.key === k).qty + 1);
+        else if ((k = g('data-dec'))) S.setQty(k, S.cart.find(i => i.key === k).qty - 1);
+        else if ((k = g('data-rm'))) S.removeFromCart(k);
+      });
+      $('#app').addEventListener('change', ev => { const k = ev.target.dataset.q; if (k) S.setQty(k, parseInt(ev.target.value, 10) || 1); });
+      S.on(render); render();
+    },
+
+    wishlist() {
+      setMeta('Wishlist', 'Your saved SHAHIN STORE products.');
+      const render = () => {
+        const L = S.wish.map(S.product).filter(Boolean);
+        $('#app').innerHTML = `<div class="container"><h1 class="serif" style="padding:28px 0 20px">${S.t('wishlist')}</h1>${L.length ? `<div class="grid g4">${L.map(p => `<div>${S.card(p)}<a class="btn outline block" style="margin-top:8px" href="product.html?slug=${e(p.slug)}">Choose size &amp; add to cart</a></div>`).join('')}</div>` : `<div class="empty">Nothing saved yet.<br><br><a class="btn" href="shop.html">${S.t('shopNow')}</a></div>`}<p class="noreview" style="margin-top:16px">Saved on this device. Wishlists sync to your account after login is added (Phase 2).</p></div>`;
+      };
+      S.on(render); render();
+    },
+
+    info() {
+      const P = {
+        about: ['About Us', 'SHAHIN STORE is an online fashion store for men, women and kids in Bangladesh. (Replace with your real story in the admin dashboard.)'],
+        faq: ['FAQ', 'Frequently asked questions will be managed from the admin dashboard. Add your real answers about delivery times, payment, exchanges and sizing.'],
+        'size-guide': ['Size Guide', 'Add your measured size charts per category here.'],
+        contact: ['Contact Us', 'Reach us on WhatsApp or Messenger using the buttons at the bottom-right of every page. Contact form submission needs the backend (Phase 2).'],
+        shipping: ['Shipping Policy', 'Delivery areas, charges and timelines go here. Current placeholder charges: ' + money(S.settings.deliveryInsideDhaka) + ' inside Dhaka, ' + money(S.settings.deliveryOutsideDhaka) + ' outside; free over ' + money(S.settings.freeDeliveryOver) + '.'],
+        returns: ['Return & Refund Policy', 'Add your return window, conditions and refund process. These are legal terms and must be written by you.'],
+        privacy: ['Privacy Policy', 'Add your privacy policy covering data collected, payment processors and cookies. This is a legal document and must be written or reviewed by you.'],
+        terms: ['Terms & Conditions', 'Add your terms and conditions. This is a legal document and must be written or reviewed by you.']
+      }[qs.get('p')] || ['Information', 'Page not found.'];
+      setMeta(P[0], P[1]);
+      $('#app').innerHTML = `<div class="container" style="max-width:820px;padding:40px 20px 80px"><h1 class="serif">${e(P[0])}</h1><p style="margin-top:18px;color:#555">${e(P[1])}</p><div class="notice" style="margin-top:24px">Placeholder content – editable from the admin dashboard once Phase 2 is built.</div></div>`;
+    }
+  };
+  (pages[document.body.dataset.page] || (() => {}))();
+})();
+</script></body></html>
